@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "catfood.actuator.url",
+      "type": "java.lang.String",
+      "description": "URL of the catfood actuator."
+  }
+] }
