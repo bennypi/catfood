@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -16,9 +17,14 @@ public class Connector {
     private String actuatorURL;
 
     public boolean deployFood() {
+        try {
         ResponseEntity<String> response = client.getForEntity(actuatorURL, String.class);
-        log.info(response.getStatusCode().toString());
+        log.debug(response.getStatusCode().toString());
         return response.getStatusCode().is2xxSuccessful();
+        } catch (RestClientException e) {
+            log.warn("Cannot connect to catfood actuator");
+            return false;
+        }
     }
 
 }

@@ -13,12 +13,4 @@ public class CatfoodApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CatfoodApplication.class, args);
 	}
-
-	//@Autowired
-    //Connector connector;
-
-	@Bean
-    public CommandLineRunner run(Connector connector){
-		return args -> connector.deployFood();
-	}
 }
