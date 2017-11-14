@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class CatfoodApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CatfoodApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CatfoodApplication.class, args);
+    }
 }
