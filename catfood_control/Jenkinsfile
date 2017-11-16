@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                withMaven {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
+    }
