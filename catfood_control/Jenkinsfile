@@ -5,21 +5,22 @@ pipeline {
         timestamps()
     }
 
+    tools {
+        maven 'maven'
+    }
+
     stages {
-        node {
         stage('Build') {
             steps {
-                withMaven {
-                    sh 'mvn clean install'
-                }
+                dir 'catfood_control'
+                sh 'mvn clean install'
             }
-        }
         }
     }
 
     post {
         always {
-            junit 'build/reports/**/*.xml'
+            junit 'catfood_control/target/reports/**/*.xml'
         }
     }
 }
