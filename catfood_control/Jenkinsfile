@@ -6,12 +6,14 @@ pipeline {
     }
 
     stages {
+        node {
         stage('Build') {
             steps {
                 withMaven {
                     sh 'mvn clean install'
                 }
             }
+        }
         }
     }
 
