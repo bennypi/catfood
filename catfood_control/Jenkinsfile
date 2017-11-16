@@ -12,8 +12,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir 'catfood_control'
-                sh 'mvn clean install'
+                dir 'catfood_control' {
+                    sh 'mvn clean install'
+                }
             }
         }
     }
