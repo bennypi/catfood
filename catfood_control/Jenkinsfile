@@ -12,16 +12,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir 'catfood_control' {
+                    dir ('catfood_control') {
+                    sh 'ls -al'
+                    sh 'mvn -version'
                     sh 'mvn clean install'
                 }
             }
         }
     }
 
-    post {
-        always {
-            junit 'catfood_control/target/reports/**/*.xml'
-        }
-    }
+    //post {
+    //    always {
+    //        junit 'catfood_control/target/reports/**/*.xml'
+    //    }
+    //}
 }
+
