@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+
+    tools {
+        maven 'maven'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                    dir ('catfood_actuator_mock') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+
+    //post {
+    //    always {
+    //        junit 'catfood_control/target/reports/**/*.xml'
+    //    }
+    //}
+}
+
