@@ -30,7 +30,7 @@ public class VaadinUI extends UI {
     }
 
     private void notficationButton(Button.ClickEvent event){
-        if (actuator.deployFood()) {
+        if (actuator.deployFood(2000)) {
         Notification.show("success");
         } else {
             Notification.show("error", Notification.Type.ERROR_MESSAGE);

@@ -16,11 +16,14 @@ public class Connector {
     @Value("${catfood.actuator.url}")
     private String actuatorURL;
 
-    public boolean deployFood() {
+    public boolean deployFood(int millis) {
         try {
-        ResponseEntity<String> response = client.getForEntity(actuatorURL, String.class);
-        log.debug(response.getStatusCode().toString());
-        return response.getStatusCode().is2xxSuccessful();
+            log.debug("Starting to send food command");
+            String fullURL = actuatorURL + String.valueOf(millis);
+            log.debug("Calling: " + fullURL);
+            ResponseEntity<String> response = client.getForEntity(fullURL, String.class);
+            log.debug(response.getStatusCode().toString());
+            return response.getStatusCode().is2xxSuccessful();
         } catch (RestClientException e) {
             log.warn("Cannot connect to catfood actuator");
             return false;
